@@ -1,0 +1,17 @@
+{
+  "name": "koajs_http_boilerplate",
+  "version": "1.0.0",
+  "description": "Simple KoaJS boilerplate to serve an app through http",
+  "main": "index.js",
+  "repository": "https://github.com/parallelo-ai/koajs_http_boilerplate",
+  "author": "Daniel-M",
+  "license": "MIT",
+  "dependencies": {
+    "@koa/cors": "^2.2.2",
+    "jsonwebtoken": "^8.3.0",
+    "koa": "^2.5.3",
+    "koa-bodyparser": "^4.2.1",
+    "koa-logger": "^3.2.0",
+    "koa-router": "^7.4.0"
+  }
+}
