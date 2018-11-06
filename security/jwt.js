@@ -7,7 +7,7 @@ const jwt = require('jsonwebtoken')
   //passphrase: '123abc'
 //}
 
-const theSecretWord = '123abc'
+const theSecretWord = process.env.JWT_SECRET || 'secretySecret'
 
 module.exports = {
   generateToken: (data, seconds=3600) => {
@@ -17,8 +17,21 @@ module.exports = {
     }
 
     //const token = jwt.sign(encode, cert, { algorithm: 'RS256'})
-    const token = jwt.sign(encode, theSecretWord, { algorithm: 'HS256'})
+    const token = jwt.sign(encode, new Buffer.from(theSecretWord, 'base64'), { algorithm: 'HS256'})
 
     return token
+  },
+
+  validateToken: token => {
+    try {
+    
+      return jwt.verify(token, new Buffer.from(theSecretWord, 'base64'))
+    
+    } catch (e) {
+      console.log('Token verification failed:')
+      console.log(e.name)
+      console.log(e.message)
+      return null
+    }
   }
 }
